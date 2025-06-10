@@ -1,3 +1,5 @@
+Semana 1
+
 Explicação eventLoop.js:
 
 console.log é síncrono → executa direto.
