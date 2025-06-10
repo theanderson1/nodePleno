@@ -20,7 +20,7 @@ Promise.resolve().then(() => {
 });
 
 console.log('4 - Fim');
-  res.send('Hello, World!');
+  res.send('Fim');
 });
 
 app.post('/timeout', (req, res) => {
@@ -33,7 +33,7 @@ app.post('/timeout', (req, res) => {
   console.log('2 - Iniciando tarefa');
   tarefaDemorada();
   console.log('3 - Continuando execução...');
-  res.send('Hello, World!');
+  res.send('Fim');
 });
 
 app.post('/bloc', (req, res) => {
@@ -49,7 +49,7 @@ app.post('/bloc', (req, res) => {
   
   bloquearThread();
   console.log('3 - Após bloqueio');
-  res.send('Hello, World!');
+  res.send('Fim');
 });
 
 // Definindo a porta
