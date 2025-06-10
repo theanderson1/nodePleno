@@ -1,22 +1,52 @@
-const users = [
-  { id: 1, name: 'Anderson' },
-  { id: 2, name: 'Maria' },
-  { id: 3, name: 'João' },
-];
+const {
+  fetchUsers,
+  fetchUserById,
+  addUser,
+  removeUser
+} = require('../services/userService');
 
-// Simula delay de 2 segundos com Promise + setTimeout
-const getUsers = async (req, res) => {
+const getUsers = async (req, res, next) => {
   try {
-    const result = await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(users);
-      }, 2000); // 2 segundos de atraso
-    });
-
-    res.json(result);
+    const users = await fetchUsers();
+    res.json(users);
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao buscar usuários' });
+    next(error);
   }
 };
 
-module.exports = { getUsers };
+const getUserById = async (req, res, next) => {
+  try {
+    const user = await fetchUserById(Number(req.params.id));
+    if (!user) return res.status(404).json({ error: 'Usuário não encontrado' });
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const createUser = async (req, res, next) => {
+  try {
+    console.log('Dados recebidos:', req.body);
+    const newUser = await addUser(req.body);
+    res.status(201).json(newUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteUser = async (req, res, next) => {
+  try {
+    const success = await removeUser(Number(req.params.id));
+    if (!success) return res.status(404).json({ error: 'Usuário não encontrado' });
+    res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getUsers,
+  getUserById,
+  createUser,
+  deleteUser
+};

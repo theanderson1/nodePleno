@@ -1,16 +1,18 @@
 {
   "name": "pleno",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "commonjs",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
-  "author": "Anderson Willians",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
