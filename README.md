@@ -1,19 +1,27 @@
-Semana 1
+Semana 2
 
--Criar os arquivos:
-  eventLoop.js
-  asyncExamples.js
-  Rota /async-test em testRoutes.js (ou similar)
+Criar rotas REST com Express (/users)
+Separar camadas (routes, controllers, services)
+Criar middleware global de erro
+Adicionar um middleware de log próprio
 
--Adicionar explicações no README.md ou em arquivos .md separados (ex: semana1.md)
+O projeto está estruturado de forma modular e organizada, com base nas melhores práticas para aplicações Node.js usando Express.
 
-Explicação eventLoop.js:
+1. GET /users — Listar todos os usuários
+curl --location 'http://localhost:3000/users'
 
-console.log é síncrono → executa direto.
-Promise entra na microtask queue (executa antes das tasks).
-setTimeout vai para a task queue (executa depois das microtasks).
+2. GET /users/:id — Buscar um usuário por ID
+curl --location 'http://localhost:3000/users/2'
 
-Explicação asyncExamples.js
+3. POST /users — Criar novo usuário
+curl --location 'http://localhost:3000/users' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "Jorge"
+}'
 
-O await facilita a leitura e a escrita de código assíncrono porque ele “pausa” a execução dentro de uma função async até a Promise ser resolvida, permitindo que o código pareça síncrono mesmo sendo assíncrono.
+4. DELETE /users/:id — Remover usuário por ID
+curl --location --request DELETE 'http://localhost:3000/users/2'
 
+
+Os usuários foram simulados de forma simples no arquivo userService.js, usando uma lista em memória (array de objetos). Isso permite testar as rotas sem precisar de banco de dados.
