@@ -1,5 +1,12 @@
 Semana 1
 
+-Criar os arquivos:
+  eventLoop.js
+  asyncExamples.js
+  Rota /async-test em testRoutes.js (ou similar)
+
+-Adicionar explicações no README.md ou em arquivos .md separados (ex: semana1.md)
+
 Explicação eventLoop.js:
 
 console.log é síncrono → executa direto.
