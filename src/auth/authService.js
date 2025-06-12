@@ -11,7 +11,7 @@ const fakeUser = {
 
 function login({ email, password }) {
   if (email === fakeUser.email && password === fakeUser.password) {
-    const token = jwt.sign({ id: fakeUser.id, email: fakeUser.email }, SECRET, {
+    const token = jwt.sign({ email: fakeUser.email }, SECRET, {
       expiresIn: '1h'
     });
     return { token };
