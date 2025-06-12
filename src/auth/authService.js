@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET = process.env.JWT_SECRET || 'segredo-supersecreto';
+const SECRET = process.env.JWT_SECRET;
 
-// Simula usuário "cadastrado"
 const fakeUser = {
   id: 1,
   email: 'admin@example.com',
