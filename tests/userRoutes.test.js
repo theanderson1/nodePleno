@@ -31,6 +31,12 @@ describe('Rotas /users', () => {
     expect(res.statusCode).toBe(404);
   });
 
+  it('GET /api/users/:id → com ID inexistente deve retornar 404', async () => {
+    const res = await request(app).get('/api/users/9999'); // ID que não existe
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toHaveProperty('error', 'Usuário não encontrado');
+  });
+
   it('DELETE /api/users/:id → deve remover o usuário e retornar 200', async () => {
     const res = await request(app).delete(`/api/users/${newUserId}`);
     expect(res.statusCode).toBe(200);

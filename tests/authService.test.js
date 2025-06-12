@@ -23,8 +23,18 @@ describe('authService', () => {
   });
 
   it('login com credenciais inválidas deve lançar erro', () => {
+    // Podemos usar jest.fn para simular o login se quiser, mas aqui não é necessário
     expect(() => {
       authService.login({ email: 'x@x.com', password: 'errado' });
     }).toThrow('Credenciais inválidas');
+  });
+
+  // Exemplo de simulação de erro no jwt.sign (ex: secret ausente)
+  it('login deve lançar erro se jwt.sign falhar', () => {
+    jwt.sign.mockImplementation(() => { throw new Error('Erro JWT'); });
+
+    expect(() => {
+      authService.login(correctCredentials);
+    }).toThrow('Erro JWT');
   });
 });
