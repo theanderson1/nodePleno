@@ -4,6 +4,6 @@ const { loginHandler, profileHandler } = require('./authController');
 const authMiddleware = require('./authMiddleware');
 
 router.post('/login', loginHandler);
-router.get('/profile', authMiddleware, profileHandler);
+router.get('/protected', authMiddleware, profileHandler);
 
 module.exports = router;
